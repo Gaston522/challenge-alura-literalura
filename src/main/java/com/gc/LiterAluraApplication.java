@@ -1,26 +1,19 @@
 package com.gc;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import com.gc.menus.MenuPrincipal;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class LiterAluraApplication implements CommandLineRunner {
+public class LiterAluraApplication{
 
-	@Autowired
-	LibroRepository repo;
 
 	public static void main(String[] args) {
-		SpringApplication.run(LiterAluraApplication.class, args);
-	}
 
-	@Override
-	public void run(String... args) throws Exception {
+        ConfigurableApplicationContext context = SpringApplication.run(LiterAluraApplication.class, args);
 
-		Libro l = new Libro();
-		l.setTitulo("hola");
-
-		repo.save(l);
+        MenuPrincipal menuPrincipal = context.getBean(MenuPrincipal.class);
+        menuPrincipal.menu();
 	}
 }
